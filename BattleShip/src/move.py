@@ -1,8 +1,8 @@
-from . import player
+from . import human_player
 from .firing_location_error import FiringLocationError
 
 class Move(object):
-    def __init__(self, maker: "player.Player", row, col) -> None:
+    def __init__(self, maker: "human_player.HumanPlayer", row, col) -> None:
         super().__init__()
         self.maker = maker
         self.row = row
@@ -10,7 +10,7 @@ class Move(object):
         self._ends_turn = False
 
     @classmethod
-    def from_str(cls, maker: "player.Player", str_rep: str) -> "Move":
+    def from_str(cls, maker: "human_player.HumanPlayer", str_rep: str) -> "Move":
         try:
             row, col = str_rep.split(',')
         except ValueError:

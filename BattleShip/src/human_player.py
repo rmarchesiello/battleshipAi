@@ -3,11 +3,12 @@ import copy
 from . import game_config, board, ship, orientation, ship_placement, move
 from .firing_location_error import FiringLocationError
 
-class Player(object):
-    opponents: List["Player"]
+
+class HumanPlayer(object):
+    opponents: List["HumanPlayer"]
     ships: Dict[str, ship.Ship]
 
-    def __init__(self, player_num: int, config: game_config.GameConfig, other_players: List["Player"]) -> None:
+    def __init__(self, player_num: int, config: game_config.GameConfig, other_players: List["HumanPlayer"]) -> None:
         super().__init__()
         self.name = 'No Name'
         self.init_name(player_num, other_players)
@@ -20,16 +21,16 @@ class Player(object):
         for opponent in other_players:
             opponent.add_opponent(self)
 
-    def init_name(self, player_num: int, other_players: List["Player"]) -> None:
+    def init_name(self, player_num: int, other_players: List["HumanPlayer"]) -> None:
         while True:
-            self.name = input(f'Player {player_num} please enter your name: ').strip()
+            self.name = input(f'HumanPlayer {player_num} please enter your name: ').strip()
             if self in other_players:
                 print(f'Someone is already using {self.name} for their name.\n'
                       f'Please choose another name.')
             else:
                 break
 
-    def add_opponent(self, opponent: "Player") -> None:
+    def add_opponent(self, opponent: "HumanPlayer") -> None:
         self.opponents.append(opponent)
 
     def place_ships(self) -> None:
@@ -125,7 +126,7 @@ class Player(object):
             print('Miss')
 
     def __eq__(self, other: object) -> bool:
-        if not isinstance(other, Player):
+        if not isinstance(other, HumanPlayer):
             return False
         else:
             return self.name == other.name
