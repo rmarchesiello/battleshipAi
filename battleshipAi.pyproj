@@ -27,9 +27,12 @@
     <Compile Include="BattleShip\src\firing_location_error.py" />
     <Compile Include="BattleShip\src\game.py" />
     <Compile Include="BattleShip\src\game_config.py" />
+    <Compile Include="BattleShip\src\human_player.py" />
+    <Compile Include="BattleShip\src\player.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BattleShip\src\move.py" />
     <Compile Include="BattleShip\src\orientation.py" />
-    <Compile Include="BattleShip\src\player.py" />
     <Compile Include="BattleShip\src\ship.py" />
     <Compile Include="BattleShip\src\ship_placement.py" />
     <Compile Include="BattleShip\src\__init__.py" />
