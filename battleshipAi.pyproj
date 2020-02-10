@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{857a80f1-5149-4034-a376-4022bb54188d}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>main.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>Global|PythonCore|3.7</InterpreterId>
+    <TestFramework>unittest</TestFramework>
+    <CommandLineArguments>BattleShip/configs/mini_game.txt</CommandLineArguments>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="BattleShip\src\board.py" />
+    <Compile Include="BattleShip\src\cell.py" />
+    <Compile Include="BattleShip\src\firing_location_error.py" />
+    <Compile Include="BattleShip\src\game.py" />
+    <Compile Include="BattleShip\src\game_config.py" />
+    <Compile Include="BattleShip\src\move.py" />
+    <Compile Include="BattleShip\src\orientation.py" />
+    <Compile Include="BattleShip\src\player.py" />
+    <Compile Include="BattleShip\src\ship.py" />
+    <Compile Include="BattleShip\src\ship_placement.py" />
+    <Compile Include="BattleShip\src\__init__.py" />
+    <Compile Include="BattleShip\test\test_board.py" />
+    <Compile Include="BattleShip\test\test_orientation.py" />
+    <Compile Include="BattleShip\test\__init__.py" />
+    <Compile Include="BattleShip\__init__.py" />
+    <Compile Include="main.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BattleShip\configs\1X1board_one_ship_one_life.txt" />
+    <Content Include="BattleShip\configs\3X4board_one_ship.txt" />
+    <Content Include="BattleShip\configs\6X5board_5_ships.txt" />
+    <Content Include="BattleShip\configs\classic_game.txt" />
+    <Content Include="BattleShip\configs\mini_game.txt" />
+    <Content Include="BattleShip\configs\minor_game.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BattleShip" />
+    <Folder Include="BattleShip\configs" />
+    <Folder Include="BattleShip\src" />
+    <Folder Include="BattleShip\test" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.7" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>
