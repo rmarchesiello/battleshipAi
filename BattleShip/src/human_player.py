@@ -2,6 +2,7 @@ from typing import Dict, List
 import copy
 from . import game_config, board, ship, orientation, ship_placement, move
 from .firing_location_error import FiringLocationError
+#test comment
 
 
 class HumanPlayer(object):
