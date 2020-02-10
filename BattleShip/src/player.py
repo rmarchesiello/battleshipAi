@@ -3,7 +3,6 @@ import copy
 from . import game_config, board, ship, orientation, ship_placement, move
 from .firing_location_error import FiringLocationError
 
-
 class Player(object):
     opponents: List["Player"]
     ships: Dict[str, ship.Ship]
@@ -155,4 +154,3 @@ class Player(object):
 
     def __str__(self) -> str:
         return self.name
-

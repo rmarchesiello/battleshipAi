@@ -1,7 +1,6 @@
 from . import player
 from .firing_location_error import FiringLocationError
 
-
 class Move(object):
     def __init__(self, maker: "player.Player", row, col) -> None:
         super().__init__()

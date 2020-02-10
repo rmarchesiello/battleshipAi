@@ -2,7 +2,6 @@ from typing import Set, List
 from . import ship_placement, orientation, game_config, cell, move
 from .cell import Cell
 
-
 class Board(object):
     empty_marker: str
     hit_marker: str

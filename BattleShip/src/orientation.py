@@ -1,6 +1,5 @@
 import enum
 
-
 class Orientation(enum.Enum):
     HORIZONTAL = 'horizontal'
     VERTICAL = 'vertical'

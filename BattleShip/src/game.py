@@ -1,7 +1,6 @@
 import itertools
 from . import game_config, player
 
-
 class Game(object):
 
     def __init__(self, game_config_file: str, num_players: int = 2) -> None:

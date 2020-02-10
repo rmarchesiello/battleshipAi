@@ -1,6 +1,5 @@
 from . import ship, orientation
 
-
 class ShipPlacement(object):
     def __init__(self, ship_: ship.Ship,
                  orientation_: orientation.Orientation,
@@ -17,4 +16,3 @@ class ShipPlacement(object):
             self.col_end = col_start
         else:
             raise NotImplementedError(f'Placing ships {orientation_} is not supported yet.')
-

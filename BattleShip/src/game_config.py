@@ -1,7 +1,6 @@
 from typing import Dict
 from . import ship
 
-
 class GameConfig(object):
     def __init__(self, game_config_file: str) -> None:
         super().__init__()
