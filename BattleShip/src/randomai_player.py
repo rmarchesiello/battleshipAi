@@ -1,9 +1,8 @@
 from typing import Dict, List
-import copy
+import copy, abc, random
 from . import game_config, board, ship, orientation, ship_placement, move
 from .player import Player
 from .firing_location_error import FiringLocationError
-import abc
 
 class RandomAIPlayer(Player):
     opponents: List["Player"]
@@ -13,7 +12,8 @@ class RandomAIPlayer(Player):
         super().__init__(player_num, config, other_players)
 
     def init_name(self, player_num: int, other_players: List["HumanPlayer"]) -> None:
-        pass
+        ai_names : List[str] = ["Bokun Wang", "Ikechi Iwuagwu", "Jinyue Song", "Grant Gilson", "Noah Ledesma", "Stephen Ott"]
+        self.name = random.choice(ai_names)
 
     def get_orientation(self, ship_: ship.Ship) -> orientation.Orientation:
         pass
