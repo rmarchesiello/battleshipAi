@@ -1,5 +1,5 @@
 import itertools
-from . import game_config, human_player
+from . import game_config, human_player, randomai_player
 
 class Game(object):
 
@@ -11,8 +11,10 @@ class Game(object):
         self.setup_players(num_players)
 
     def setup_players(self, num_players: int) -> None:
-        for player_num in range(1, num_players + 1):
-            self.players.append(human_player.HumanPlayer(player_num, self.game_config, self.players))
+        #for player_num in range(1, num_players + 1):
+            #self.players.append(human_player.HumanPlayer(player_num, self.game_config, self.players))
+        self.players.append(human_player.HumanPlayer(1, self.game_config, self.players))
+        self.players.append(randomai_player.RandomAIPlayer(2, self.game_config, self.players))
 
     def play(self) -> None:
         active_player = self.players[0]

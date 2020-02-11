@@ -16,13 +16,27 @@ class RandomAIPlayer(Player):
         self.name = random.choice(ai_names)
 
     def get_orientation(self, ship_: ship.Ship) -> orientation.Orientation:
-        pass
+        pos_orientations : List[str] = ["horizontal", "vertical"]
+        orientationcreated = random.choice(pos_orientations)
+        return orientation.Orientation.from_string(orientationcreated)
 
     def get_start_coords(self, ship_: ship.Ship):
-        pass
+        row = random.randint(0, self.board.num_rows -1)
+        col = random.randint(0, self.board.num_cols -1)
+        return row, col
 
     def get_move(self) -> move.Move:
-        pass
+        rand_move_row = random.randint(0, self.board.num_rows -1)
+        rand_move_col = random.randint(0, self.board.num_cols -1)
+        coords = f"{rand_move_row}, {rand_move_col}"
+        firing_location = move.Move.from_str(self, coords)
+        return firing_location
 
     def fire_at(self, row: int, col: int) -> None:
-        pass
+        opponent = self.opponents[0]
+        if opponent.board.has_been_fired_at(row, col):
+            raise FiringLocationError(' ')
+        else:
+            opponent.receive_fire_at(row, col)
+            self.display_scanning_boards()
+            self.display_firing_board()
