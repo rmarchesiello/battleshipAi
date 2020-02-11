@@ -31,6 +31,9 @@
     <Compile Include="BattleShip\src\game.py" />
     <Compile Include="BattleShip\src\game_config.py" />
     <Compile Include="BattleShip\src\human_player.py" />
+    <Compile Include="BattleShip\src\aiplayer.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BattleShip\src\randomai_player.py">
       <SubType>Code</SubType>
     </Compile>
