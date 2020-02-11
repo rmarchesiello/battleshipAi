@@ -1,4 +1,4 @@
-from typing import Set, List
+from typing import Set, List, Tuple
 from . import ship_placement, orientation, game_config, cell, move
 from .cell import Cell
 
@@ -13,6 +13,7 @@ class Board(object):
         self.empty_marker = empty_marker
         self.hit_marker = 'X'
         self.miss_marker = 'O'
+        self.ship_coords = []
         self.contents = [
             [cell.Cell(self.empty_marker, self.empty_marker, self.hit_marker, self.miss_marker) for col in
              range(config.num_cols)]
@@ -58,6 +59,13 @@ class Board(object):
         for row in range(placement.row_start, placement.row_end + 1):
             for col in range(placement.col_start, placement.col_end + 1):
                 self.contents[row][col].content = placement.ship.initial
+
+    def save_placements(self, placement: ship_placement.ShipPlacement) -> List:
+        for row in range(placement.row_start, placement.row_end + 1):
+            for col in range(placement.col_start, placement.col_end + 1):
+                mytuple = (row, col)
+                self.ship_coords.append(mytuple)
+        return self.ship_coords
 
     def get_overlapping_ships(self, placement: ship_placement.ShipPlacement) -> Set[str]:
         overlapping_ships: Set[str] = set()

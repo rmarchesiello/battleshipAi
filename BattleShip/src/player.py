@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Tuple
 import copy
 from . import game_config, board, ship, orientation, ship_placement, move
 from .firing_location_error import FiringLocationError
@@ -15,6 +15,7 @@ class Player(object):
         self.board = board.Board(config)
         self.opponents = other_players[:]  # a copy of other players
         self.ships = copy.deepcopy(config.available_ships)
+        self.ship_placements = []
         self.place_ships()
 
         # make this player the opponent of all the other players
@@ -39,6 +40,7 @@ class Player(object):
             placement = self.get_ship_placement(ship_)
             try:
                 self.board.place_ship(placement)
+                self.ship_placements = self.board.save_placements(placement)
             except ValueError as e:
                 print(e)
             else:
