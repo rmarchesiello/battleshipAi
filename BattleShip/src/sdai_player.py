@@ -11,6 +11,27 @@ class HuntDestroyAIPlayer(AIPlayer):
 
     def __init__(self, player_num: int, config: game_config.GameConfig, other_players: List[Player]) -> None:
         super().__init__(player_num, config, other_players)
+        self.destroy_flag = False
+        self.destroy_mode_moves = []
 
     def get_move(self) -> move.Move:
-        pass
+        if self.destroy_flag and len(self.destroy_mode_moves) > 0:
+            self.get_destroy_move()
+        else:
+            self.destroy_flag = False
+            self.get_search_move()
+
+    def get_search_move(self) -> move.Move:
+        move_index = random.randint(0, len(self.possible_moves))
+        raw_coords1 = str(self.possible_moves.pop(move_index))
+        raw_coords2 = raw_coords1.replace('(', '')
+        coords = raw_coords2.replace(')', '')
+        firing_location = move.Move.from_str(self, coords)
+        return firing_location
+
+    def get_destroy_move(self) -> move.Move:
+        raw_coords1 = str(self.destroy_mode_moves.pop(0))
+        raw_coords2 = raw_coords1.replace('(', '')
+        coords = raw_coords2.replace(')', '')
+        firing_location = move.Move.from_str(self, coords)
+        return firing_location
