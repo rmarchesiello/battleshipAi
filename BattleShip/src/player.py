@@ -16,6 +16,7 @@ class Player(object):
         self.opponents = other_players[:]  # a copy of other players
         self.ships = copy.deepcopy(config.available_ships)
         self.ship_placements = []
+        self.possible_moves = self.board.get_possible_moves()
         self.place_ships()
 
         # make this player the opponent of all the other players

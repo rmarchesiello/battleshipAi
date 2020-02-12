@@ -67,6 +67,14 @@ class Board(object):
                 self.ship_coords.append(mytuple)
         return self.ship_coords
 
+    def get_possible_moves(self) -> List[Tuple]:
+        coords = []
+        for row in range(0, self.num_rows):
+            for col in range(0, self.num_cols):
+                mytuple = (row, col)
+                coords.append(mytuple)
+        return coords
+
     def get_overlapping_ships(self, placement: ship_placement.ShipPlacement) -> Set[str]:
         overlapping_ships: Set[str] = set()
         for row in range(placement.row_start, placement.row_end + 1):

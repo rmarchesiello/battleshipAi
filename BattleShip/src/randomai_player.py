@@ -9,12 +9,13 @@ class RandomAIPlayer(AIPlayer):
     opponents: List["Player"]
     ships: Dict[str, ship.Ship]
 
-    def __init__(self, player_num: int, config: game_config.GameConfig, other_players: List["HumanPlayer"]) -> None:
+    def __init__(self, player_num: int, config: game_config.GameConfig, other_players: List["Player"]) -> None:
         super().__init__(player_num, config, other_players)
 
     def get_move(self) -> move.Move:
-        rand_move_row = random.randint(0, self.board.num_rows -1)
-        rand_move_col = random.randint(0, self.board.num_cols -1)
-        coords = f"{rand_move_row}, {rand_move_col}"
+        move_index = random.randint(0, len(self.possible_moves))
+        raw_coords1 = str(self.possible_moves.pop(move_index))
+        raw_coords2 = raw_coords1.replace('(', '')
+        coords = raw_coords2.replace(')', '')
         firing_location = move.Move.from_str(self, coords)
         return firing_location
