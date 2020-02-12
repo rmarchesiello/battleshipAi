@@ -14,7 +14,7 @@ class CheatingAIPlayer(AIPlayer):
 
     def get_move(self) -> move.Move:
         move_index = random.randint(0, len(self.opponents[0].board.ship_coords)-1)
-        raw_coords1 = str(self.opponents[0].board.ship_coords.pop(move_index))
+        raw_coords1 = str(self.opponents[0].board.ship_coords.pop(0))
         raw_coords2 = raw_coords1.replace('(', '')
         coords = raw_coords2.replace(')', '')
         print(coords)

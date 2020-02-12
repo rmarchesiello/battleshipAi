@@ -41,6 +41,7 @@ class Player(object):
             try:
                 self.board.place_ship(placement)
                 self.ship_placements = self.board.save_placements(placement)
+                self.ship_placements.sort()
             except ValueError as e:
                 print(e)
             else:
