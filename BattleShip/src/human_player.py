@@ -11,6 +11,7 @@ class HumanPlayer(Player):
 
     def __init__(self, player_num: int, config: game_config.GameConfig, other_players: List["HumanPlayer"]) -> None:
         super().__init__(player_num, config, other_players)
+        self.is_sdai = False
 
     def init_name(self, player_num: int, other_players: List["HumanPlayer"]) -> None:
         while True:

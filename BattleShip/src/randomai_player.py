@@ -11,6 +11,7 @@ class RandomAIPlayer(AIPlayer):
 
     def __init__(self, player_num: int, config: game_config.GameConfig, other_players: List["Player"]) -> None:
         super().__init__(player_num, config, other_players)
+        self.is_sdai = True
 
     def get_move(self) -> move.Move:
         move_index = random.randint(0, len(self.possible_moves))

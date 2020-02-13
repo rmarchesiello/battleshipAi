@@ -83,9 +83,18 @@ class Player(object):
             ship_hit = self.ships[location_fired_at.content]
             ship_hit.damage()
             print(f"You hit {self.name}'s {ship_hit}!")
-            if self.isinstance(self, sdai_player.HuntDestroyAIPlayer):
-                self.destroy_flag = True
-                self.destroy_mode_moves.append((row - 1, col), (row + 1, col), (row, col - 1), (row, col + 1))
+            if self.opponents[0].is_sdai == True:
+                print("destroy flag true")
+                self.opponents[0].destroy_flag = True
+                if row - 1 >= 0:
+                    self.opponents[0].destroy_mode_moves.append((row - 1, col))
+                if row + 1 < self.board.num_rows:
+                    self.opponents[0].destroy_mode_moves.append((row + 1, col))
+                if col - 1 >= 0:
+                    self.opponents[0].destroy_mode_moves.append((row, col - 1))
+                if col + 1 < self.board.num_cols:
+                    self.opponents[0].destroy_mode_moves.append((row, col + 1))
+                print(self.opponents[0].destroy_mode_moves)
             if ship_hit.destroyed():
                 print(f"You destroyed {self.name}'s {ship_hit}")
         else:
