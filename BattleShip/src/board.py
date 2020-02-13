@@ -42,6 +42,14 @@ class Board(object):
         return self.contents[row][col]
 
     def place_ship(self, placement: ship_placement.ShipPlacement) -> None:
+        self.check_plcmnt_bounds(placement)
+        self.check_plcmnt_overlap(placement)
+        # actually add the ship
+        for row in range(placement.row_start, placement.row_end + 1):
+            for col in range(placement.col_start, placement.col_end + 1):
+                self.contents[row][col].content = placement.ship.initial
+
+    def check_plcmnt_bounds(self, placement: ship_placement.ShipPlacement):
         direction = 'horizontally' if placement.orientation == orientation.Orientation.HORIZONTAL else 'vertically'
         if not self.coords_in_bounds(placement.row_start, placement.col_start):
             raise ValueError(f'Cannot place {placement.ship.name} {direction} at {placement.row_start}, {placement.col_start}'
@@ -50,15 +58,12 @@ class Board(object):
             raise ValueError(f'Cannot place {placement.ship.name} {direction} at {placement.row_start}, {placement.col_start}'
                              f' because it would end up out of bounds.')
 
+    def check_plcmnt_overlap(self, placement: ship_placement.ShipPlacement):
+        direction = 'horizontally' if placement.orientation == orientation.Orientation.HORIZONTAL else 'vertically'
         overlapping_ships = sorted(self.get_overlapping_ships(placement))
         if overlapping_ships:
             raise ValueError(f'Cannot place {placement.ship.name} {direction} at {placement.row_start}, {placement.col_start}'
                              f' because it would overlap with {overlapping_ships}')
-
-        # actually add the ship
-        for row in range(placement.row_start, placement.row_end + 1):
-            for col in range(placement.col_start, placement.col_end + 1):
-                self.contents[row][col].content = placement.ship.initial
 
     def save_placements(self, placement: ship_placement.ShipPlacement) -> List:
         for row in range(placement.row_start, placement.row_end + 1):

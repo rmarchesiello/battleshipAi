@@ -11,6 +11,7 @@ class AIPlayer(Player):
 
     def __init__(self, player_num: int, config: game_config.GameConfig, other_players: List["HumanPlayer"]) -> None:
         super().__init__(player_num, config, other_players)
+        self.temp_ori = ''
 
     #def init_name(self, player_num: int, other_players: List["HumanPlayer"]) -> None:
     #    ai_names : List[str] = ["Bokun Wang", "Ikechi Iwuagwu", "Jinyue Song", "Grant Gilson", "Noah Ledesma", "Stephen Ott"]
@@ -19,11 +20,19 @@ class AIPlayer(Player):
     def get_orientation(self, ship_: ship.Ship) -> orientation.Orientation:
         pos_orientations : List[str] = ["horizontal", "vertical"]
         orientationcreated = random.choice(pos_orientations)
+        self.temp_ori = orientationcreated
+        
         return orientation.Orientation.from_string(orientationcreated)
 
-    def get_start_coords(self, ship_: ship.Ship):
-        row = random.randint(0, self.board.num_rows - 1)
-        col = random.randint(0, self.board.num_cols - 1)
+    def get_start_coords(self, ship_: ship.Ship): #this might be where the problem is, find a way to check board bounds here
+        while True:
+            row = random.randint(0, self.board.num_rows - 1)
+            if row + ship_.length - 1 >= self.board.num_rows and self.temp_ori == 'vertical':
+                continue
+            col = random.randint(0, self.board.num_cols - 1)
+            if col + ship_.length - 1 >= self.board.num_cols and self.temp_ori == 'horizontal':
+                continue
+            break
         return row, col
 
     def place_ship(self, ship_: ship.Ship) -> None:
