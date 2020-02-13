@@ -11,6 +11,10 @@ class CheatingAIPlayer(AIPlayer):
 
     def __init__(self, player_num: int, config: game_config.GameConfig, other_players: List["HumanPlayer"]) -> None:
         super().__init__(player_num, config, other_players)
+        self.is_sdai = False
+
+    def init_name(self, player_num: int, other_players: List["Player"]) -> None:
+        self.name = f"Cheating Ai {player_num}"
 
     def get_move(self) -> move.Move:
         move_index = random.randint(0, len(self.opponents[0].board.ship_coords)-1)

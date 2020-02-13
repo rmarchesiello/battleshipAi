@@ -8,11 +8,20 @@ class Game(object):
         self.game_config = game_config.GameConfig(game_config_file)
         self.players = []
         self.player_turn = 0
+        self.player_types = ['Human', 'CheatingAi', 'SearchDestroyAi', 'RandomAi']
         self.setup_players(num_players)
 
     def setup_players(self, num_players: int) -> None:
-        self.players.append(human_player.HumanPlayer(1, self.game_config, self.players))
-        self.players.append(sdai_player.HuntDestroyAIPlayer(2, self.game_config, self.players))
+        for i in range(1,3):
+            raw_selection = input(f"Enter one of {self.player_types} for Player {i}'s type: ")
+            if raw_selection[0].lower() == 'h':
+                self.players.append(human_player.HumanPlayer(i, self.game_config, self.players))
+            elif raw_selection[0].lower() == 'c':
+                self.players.append(cheatingai_player.CheatingAIPlayer(i, self.game_config, self.players))
+            elif raw_selection[0].lower() == 's':
+                self.players.append(sdai_player.HuntDestroyAIPlayer(i, self.game_config, self.players))
+            elif raw_selection[0].lower() == 'r':
+                self.players.append(randomai_player.RandomAIPlayer(i, self.game_config, self.players))
 
     def play(self) -> None:
         active_player = self.players[0]

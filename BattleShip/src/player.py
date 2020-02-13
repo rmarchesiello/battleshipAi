@@ -84,7 +84,7 @@ class Player(object):
             ship_hit.damage()
             print(f"You hit {self.name}'s {ship_hit}!")
             if self.opponents[0].is_sdai == True:
-                print("destroy flag true")
+                #print("destroy flag true")
                 self.opponents[0].destroy_flag = True
                 if row - 1 >= 0:
                     self.opponents[0].destroy_mode_moves.append((row - 1, col))
@@ -94,7 +94,7 @@ class Player(object):
                     self.opponents[0].destroy_mode_moves.append((row, col - 1))
                 if col + 1 < self.board.num_cols:
                     self.opponents[0].destroy_mode_moves.append((row, col + 1))
-                print(self.opponents[0].destroy_mode_moves)
+                #print(self.opponents[0].destroy_mode_moves)
             if ship_hit.destroyed():
                 print(f"You destroyed {self.name}'s {ship_hit}")
         else:
