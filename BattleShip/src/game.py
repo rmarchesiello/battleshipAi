@@ -1,11 +1,11 @@
-import itertools
+import itertools, sys, random
 from . import game_config, human_player, randomai_player, cheatingai_player, sdai_player, player
 
 class Game(object):
-
-    def __init__(self, game_config_file: str, num_players: int = 2) -> None:
+    def __init__(self, game_config_file: str, seed: int, num_players: int = 2) -> None:
         super().__init__()
-        self.game_config = game_config.GameConfig(game_config_file)
+        self.game_config = game_config.GameConfig(game_config_file, seed)
+        random.seed(seed)
         self.players = []
         self.player_turn = 0
         self.player_types = ['Human', 'CheatingAi', 'SearchDestroyAi', 'RandomAi']
