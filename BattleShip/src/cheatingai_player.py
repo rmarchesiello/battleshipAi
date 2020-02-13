@@ -21,7 +21,6 @@ class CheatingAIPlayer(AIPlayer):
         raw_coords1 = str(self.opponents[0].board.ship_coords.pop(0))
         raw_coords2 = raw_coords1.replace('(', '')
         coords = raw_coords2.replace(')', '')
-        print(coords)
         firing_location = move.Move.from_str(self, coords)
         return firing_location
 
