@@ -13,7 +13,7 @@
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <InterpreterId>Global|PythonCore|3.7</InterpreterId>
     <TestFramework>unittest</TestFramework>
-    <CommandLineArguments>BattleShip/configs/mini_game.txt BattleShip/configs/seed.txt</CommandLineArguments>
+    <CommandLineArguments>BattleShip/configs/minor_game.txt 75</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />

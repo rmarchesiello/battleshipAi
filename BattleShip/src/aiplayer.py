@@ -12,9 +12,9 @@ class AIPlayer(Player):
     def __init__(self, player_num: int, config: game_config.GameConfig, other_players: List["HumanPlayer"]) -> None:
         super().__init__(player_num, config, other_players)
 
-    def init_name(self, player_num: int, other_players: List["HumanPlayer"]) -> None:
-        ai_names : List[str] = ["Bokun Wang", "Ikechi Iwuagwu", "Jinyue Song", "Grant Gilson", "Noah Ledesma", "Stephen Ott"]
-        self.name = random.choice(ai_names)
+    #def init_name(self, player_num: int, other_players: List["HumanPlayer"]) -> None:
+    #    ai_names : List[str] = ["Bokun Wang", "Ikechi Iwuagwu", "Jinyue Song", "Grant Gilson", "Noah Ledesma", "Stephen Ott"]
+    #    self.name = random.choice(ai_names)
 
     def get_orientation(self, ship_: ship.Ship) -> orientation.Orientation:
         pos_orientations : List[str] = ["horizontal", "vertical"]
@@ -22,9 +22,22 @@ class AIPlayer(Player):
         return orientation.Orientation.from_string(orientationcreated)
 
     def get_start_coords(self, ship_: ship.Ship):
-        row = random.randint(0, self.board.num_rows -1)
-        col = random.randint(0, self.board.num_cols -1)
+        row = random.randint(0, self.board.num_rows - 1)
+        col = random.randint(0, self.board.num_cols - 1)
         return row, col
+
+    def place_ship(self, ship_: ship.Ship) -> None:
+        while True:
+            placement = self.get_ship_placement(ship_)
+            try:
+                self.board.place_ship(placement)
+                self.ship_placements = self.board.save_placements(placement)
+                self.ship_placements.sort()
+            except ValueError as e:
+                placement = None
+                continue
+            else:
+                return
 
     @abc.abstractmethod
     def get_move(self) -> move.Move:

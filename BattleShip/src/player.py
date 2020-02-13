@@ -36,17 +36,9 @@ class Player(object):
             self.place_ship(ship_)
         self.display_placement_board()
 
+    @abc.abstractmethod
     def place_ship(self, ship_: ship.Ship) -> None:
-        while True:
-            placement = self.get_ship_placement(ship_)
-            try:
-                self.board.place_ship(placement)
-                self.ship_placements = self.board.save_placements(placement)
-                self.ship_placements.sort()
-            except ValueError as e:
-                print(e)
-            else:
-                return
+        ...
 
     def get_ship_placement(self, ship_: ship.Ship):
         while True:
@@ -54,7 +46,10 @@ class Player(object):
                 orientation_ = self.get_orientation(ship_)
                 start_row, start_col = self.get_start_coords(ship_)
             except ValueError as e:
-                print(e)
+                orientation_ = None
+                start_row = None
+                start_col = None
+                continue
             else:
                 return ship_placement.ShipPlacement(ship_, orientation_, start_row, start_col)
 
@@ -120,7 +115,7 @@ class Player(object):
 
     def display_firing_board(self) -> None:
         print(f"\n{self.name}'s Board")
-        print(self.get_visible_representation_of_board())
+        print(self.get_visible_representation_of_board(), end='')
 
     def get_hidden_representation_of_board(self) -> str:
         return self.board.get_display(hidden=True)

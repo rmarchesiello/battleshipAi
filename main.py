@@ -2,7 +2,6 @@ import sys
 from BattleShip.src import game
 
 if __name__ == '__main__':
-    seed = 10
     if len(sys.argv) >= 3:
         seed = int(sys.argv[2])
     if len(sys.argv) <= 1:

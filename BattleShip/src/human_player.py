@@ -22,6 +22,18 @@ class HumanPlayer(Player):
             else:
                 break
 
+    def place_ship(self, ship_: ship.Ship) -> None:
+        while True:
+            placement = self.get_ship_placement(ship_)
+            try:
+                self.board.place_ship(placement)
+                self.ship_placements = self.board.save_placements(placement)
+                self.ship_placements.sort()
+            except ValueError as e:
+                print(e)
+            else:
+                return
+
     def get_orientation(self, ship_: ship.Ship) -> orientation.Orientation:
         orientation_ = input(
             f'{self.name} enter horizontal or vertical for the orientation of {ship_.name} '

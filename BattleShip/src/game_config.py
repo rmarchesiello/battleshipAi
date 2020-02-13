@@ -4,7 +4,7 @@ import random
 
 class GameConfig(object):
     def __init__(self, game_config_file: str, seed: int) -> None:
-        random.seed(seed)
+        #random.seed(seed)
         super().__init__()
         self._num_rows = -1
         self._num_cols = -1
