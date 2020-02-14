@@ -78,15 +78,20 @@ class Player(object):
             if self.opponents[0].is_sdai == True:
                 #print("destroy flag true")
                 self.opponents[0].destroy_flag = True
+                if col - 1 >= 0: 
+                    if not self.board.contents[row][col - 1] == 'X' or 'O': #left
+                        self.opponents[0].destroy_mode_moves.append((row, col - 1))
                 if row - 1 >= 0:
-                    self.opponents[0].destroy_mode_moves.append((row - 1, col))
+                    if not self.board.contents[row - 1][col] == 'X' or 'O': #top
+                        self.opponents[0].destroy_mode_moves.append((row - 1, col))
+                if col + 1 < self.board.num_cols: #right
+                    if not self.board.contents[row][col + 1] == 'X' or 'O':
+                        self.opponents[0].destroy_mode_moves.append((row, col + 1))
                 if row + 1 < self.board.num_rows:
-                    self.opponents[0].destroy_mode_moves.append((row + 1, col))
-                if col - 1 >= 0:
-                    self.opponents[0].destroy_mode_moves.append((row, col - 1))
-                if col + 1 < self.board.num_cols:
-                    self.opponents[0].destroy_mode_moves.append((row, col + 1))
+                    if not self.board.contents[row + 1][col] == 'X' or 'O': #bottom
+                        self.opponents[0].destroy_mode_moves.append((row + 1, col))
                 #print(self.opponents[0].destroy_mode_moves)
+                #self.opponents[0].destroy_mode_moves.sort()
             if ship_hit.destroyed():
                 print(f"You destroyed {self.name}'s {ship_hit}")
         else:
@@ -112,7 +117,7 @@ class Player(object):
 
     def display_firing_board(self) -> None:
         print(f"\n{self.name}'s Board")
-        print(self.get_visible_representation_of_board(), end='')
+        print(self.get_visible_representation_of_board())
 
     def get_hidden_representation_of_board(self) -> str:
         return self.board.get_display(hidden=True)
