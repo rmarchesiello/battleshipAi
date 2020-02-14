@@ -25,17 +25,14 @@ class AIPlayer(Player):
         return orientation.Orientation.from_string(orientationcreated)
 
     def get_start_coords(self, ship_: ship.Ship): #this might be where the problem is, find a way to check board bounds here
-        while True:
-            row = random.randint(0, self.board.num_rows - 1)
-            if row + ship_.length - 1 >= self.board.num_rows and self.temp_ori == 'vertical':
-                continue
-            break
-        while True:
+        if self.temp_ori == 'vertical':
+            row = random.randint(0, self.board.num_rows - ship_.length)
             col = random.randint(0, self.board.num_cols - 1)
-            if col + ship_.length - 1 >= self.board.num_cols and self.temp_ori == 'horizontal':
-                continue
-            break
-        return row, col
+            return row, col
+        elif self.temp_ori == 'horizontal':
+            row = random.randint(0, self.board.num_rows - 1)
+            col = random.randint(0, self.board.num_cols - ship_.length)
+            return row, col
 
     def place_ship(self, ship_: ship.Ship) -> None:
         while True:
@@ -45,7 +42,6 @@ class AIPlayer(Player):
                 self.ship_placements = self.board.save_placements(placement)
                 self.ship_placements.sort()
             except ValueError as e:
-                placement = None
                 continue
             else:
                 return

@@ -46,9 +46,6 @@ class Player(object):
                 orientation_ = self.get_orientation(ship_)
                 start_row, start_col = self.get_start_coords(ship_)
             except ValueError as e:
-                orientation_ = None
-                start_row = None
-                start_col = None
                 continue
             else:
                 return ship_placement.ShipPlacement(ship_, orientation_, start_row, start_col)
