@@ -29,6 +29,8 @@ class AIPlayer(Player):
             row = random.randint(0, self.board.num_rows - 1)
             if row + ship_.length - 1 >= self.board.num_rows and self.temp_ori == 'vertical':
                 continue
+            break
+        while True:
             col = random.randint(0, self.board.num_cols - 1)
             if col + ship_.length - 1 >= self.board.num_cols and self.temp_ori == 'horizontal':
                 continue
