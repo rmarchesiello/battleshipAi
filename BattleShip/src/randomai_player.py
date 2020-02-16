@@ -19,6 +19,7 @@ class RandomAIPlayer(AIPlayer):
 
     def get_move(self) -> move.Move:
         selection = random.choice(self.possible_moves)
+        self.possible_moves.remove(selection)
         raw_coords1 = str(selection)
         raw_coords2 = raw_coords1.replace('(', '')
         coords = raw_coords2.replace(')', '')
