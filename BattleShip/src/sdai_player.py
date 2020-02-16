@@ -13,6 +13,7 @@ class HuntDestroyAIPlayer(AIPlayer):
         super().__init__(player_num, config, other_players)
         self.destroy_flag = False
         self.destroy_mode_moves = []
+        self.possible_moves = self.board.get_possible_moves()
         self.is_sdai = True
 
     def init_name(self, player_num: int, other_players: List["Player"]) -> None:
@@ -35,7 +36,11 @@ class HuntDestroyAIPlayer(AIPlayer):
         return firing_location
 
     def get_destroy_move(self) -> move.Move:
-        raw_coords1 = str(self.destroy_mode_moves.pop(0))
+        selection = random.choice(self.destroy_mode_moves)
+        self.destroy_mode_moves.remove(selection)
+        if selection in self.possible_moves:
+            self.possible_moves.remove(selection)
+        raw_coords1 = str(selection)
         raw_coords2 = raw_coords1.replace('(', '')
         coords = raw_coords2.replace(')', '')
         firing_location = move.Move.from_str(self, coords)
