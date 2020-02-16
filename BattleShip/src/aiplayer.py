@@ -12,11 +12,7 @@ class AIPlayer(Player):
     def __init__(self, player_num: int, config: game_config.GameConfig, other_players: List["HumanPlayer"]) -> None:
         super().__init__(player_num, config, other_players)
         self.temp_ori = ''
-
-    #def init_name(self, player_num: int, other_players: List["HumanPlayer"]) -> None:
-    #    ai_names : List[str] = ["Bokun Wang", "Ikechi Iwuagwu", "Jinyue Song", "Grant Gilson", "Noah Ledesma", "Stephen Ott"]
-    #    self.name = random.choice(ai_names)
-
+        
     def get_orientation(self, ship_: ship.Ship) -> orientation.Orientation:
         pos_orientations : List[str] = ["horizontal", "vertical"]
         orientationcreated = random.choice(pos_orientations)

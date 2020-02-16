@@ -26,8 +26,9 @@ class HuntDestroyAIPlayer(AIPlayer):
             return self.get_search_move()
 
     def get_search_move(self) -> move.Move:
-        move_index = random.randint(0, len(self.possible_moves)-1)
-        raw_coords1 = str(self.possible_moves.pop(move_index))
+        selection = random.choice(self.possible_moves)
+        self.possible_moves.remove(selection)
+        raw_coords1 = str(selection)
         raw_coords2 = raw_coords1.replace('(', '')
         coords = raw_coords2.replace(')', '')
         firing_location = move.Move.from_str(self, coords)

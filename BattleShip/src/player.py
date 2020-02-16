@@ -16,7 +16,6 @@ class Player(object):
         self.opponents = other_players[:]  # a copy of other players
         self.ships = copy.deepcopy(config.available_ships)
         self.ship_placements = []
-        self.possible_moves = self.board.get_possible_moves()
         self.place_ships()
 
         # make this player the opponent of all the other players
@@ -76,7 +75,6 @@ class Player(object):
             ship_hit.damage()
             print(f"You hit {self.name}'s {ship_hit}!")
             if self.opponents[0].is_sdai == True:
-                #print("destroy flag true")
                 self.opponents[0].destroy_flag = True
                 if col - 1 >= 0: 
                     if not self.board.contents[row][col - 1] == 'X' or 'O': #left
@@ -90,8 +88,6 @@ class Player(object):
                 if row + 1 < self.board.num_rows:
                     if not self.board.contents[row + 1][col] == 'X' or 'O': #bottom
                         self.opponents[0].destroy_mode_moves.append((row + 1, col))
-                #print(self.opponents[0].destroy_mode_moves)
-                #self.opponents[0].destroy_mode_moves.sort()
             if ship_hit.destroyed():
                 print(f"You destroyed {self.name}'s {ship_hit}")
         else:
