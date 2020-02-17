@@ -38,8 +38,7 @@ class HuntDestroyAIPlayer(AIPlayer):
     def get_destroy_move(self) -> move.Move:
         selection = random.choice(self.destroy_mode_moves)
         self.destroy_mode_moves.remove(selection)
-        if selection in self.possible_moves:
-            self.possible_moves.remove(selection)
+        self.possible_moves.remove(selection)
         raw_coords1 = str(selection)
         raw_coords2 = raw_coords1.replace('(', '')
         coords = raw_coords2.replace(')', '')
