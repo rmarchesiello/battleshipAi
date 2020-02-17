@@ -77,16 +77,20 @@ class Player(object):
             if self.opponents[0].is_sdai == True:
                 self.opponents[0].destroy_flag = True
                 if col - 1 >= 0: 
-                    if self.board.contents[row][col - 1] != 'X' and self.board.contents[row][col - 1] != 'O': #left
+                    test_tuple = (row, col-1)
+                    if test_tuple in self.opponents[0].possible_moves and test_tuple not in self.opponents[0].destroy_mode_moves: #left
                         self.opponents[0].destroy_mode_moves.append((row, col - 1))
                 if row - 1 >= 0:
-                    if self.board.contents[row - 1][col] != 'X' and self.board.contents[row - 1][col] != 'O': #top
+                    test_tuple = (row - 1, col)
+                    if test_tuple in self.opponents[0].possible_moves and test_tuple not in self.opponents[0].destroy_mode_moves: #top
                         self.opponents[0].destroy_mode_moves.append((row - 1, col))
                 if col + 1 < self.board.num_cols: #right
-                    if self.board.contents[row][col + 1] != 'X' and self.board.contents[row][col + 1] != 'O': #right
+                    test_tuple = (row, col+1)
+                    if test_tuple in self.opponents[0].possible_moves and test_tuple not in self.opponents[0].destroy_mode_moves:
                         self.opponents[0].destroy_mode_moves.append((row, col + 1))
                 if row + 1 < self.board.num_rows:
-                    if self.board.contents[row + 1][col] != 'X' and self.board.contents[row + 1][col] != 'O': #bottom
+                    test_tuple = (row+1, col)
+                    if test_tuple in self.opponents[0].possible_moves and test_tuple not in self.opponents[0].destroy_mode_moves: #bottom
                         self.opponents[0].destroy_mode_moves.append((row + 1, col))
             if ship_hit.destroyed():
                 print(f"You destroyed {self.name}'s {ship_hit}")
