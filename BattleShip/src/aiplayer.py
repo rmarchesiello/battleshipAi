@@ -49,7 +49,7 @@ class AIPlayer(Player):
     def fire_at(self, row: int, col: int) -> None:
         opponent = self.opponents[0]
         if opponent.board.has_been_fired_at(row, col):
-            raise FiringLocationError(' ')
+            raise FiringLocationError
         else:
             opponent.receive_fire_at(row, col)
             self.display_scanning_boards()
