@@ -20,7 +20,7 @@ class HuntDestroyAIPlayer(AIPlayer):
         self.name = f"Search Destroy AI {player_num}"
 
     def get_move(self) -> move.Move:
-        if self.destroy_flag == True and len(self.destroy_mode_moves) > 0:
+        if self.destroy_flag is True and len(self.destroy_mode_moves) > 0:
             return self.get_destroy_move()
         else:
             self.destroy_flag = False
