@@ -30,7 +30,7 @@ class Move(object):
         try:
             self.maker.fire_at(self.row, self.col)
         except FiringLocationError as e:
-            print(e)
+            ... #wtf
         else:
             self._ends_turn = True
 
