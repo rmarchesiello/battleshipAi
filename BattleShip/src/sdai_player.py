@@ -36,7 +36,7 @@ class HuntDestroyAIPlayer(AIPlayer):
         return firing_location
 
     def get_destroy_move(self) -> move.Move:
-        selection = random.choice(self.destroy_mode_moves)
+        selection = self.destroy_mode_moves[0]
         self.destroy_mode_moves.remove(selection)
         self.possible_moves.remove(selection)
         raw_coords1 = str(selection)
