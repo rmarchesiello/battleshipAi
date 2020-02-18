@@ -6,16 +6,16 @@ from .firing_location_error import FiringLocationError
 import abc
 
 class HumanPlayer(Player):
-    opponents: List["HumanPlayer"]
+    opponents: List["Player"]
     ships: Dict[str, ship.Ship]
 
-    def __init__(self, player_num: int, config: game_config.GameConfig, other_players: List["HumanPlayer"]) -> None:
+    def __init__(self, player_num: int, config: game_config.GameConfig, other_players: List["Player"]) -> None:
         super().__init__(player_num, config, other_players)
         self.is_sdai = False
 
     def init_name(self, player_num: int, other_players: List["HumanPlayer"]) -> None:
         while True:
-            self.name = input(f'HumanPlayer {player_num} please enter your name: ').strip()
+            self.name = input(f"Player {player_num} please enter your name: ").strip()
             if self in other_players:
                 print(f'Someone is already using {self.name} for their name.\n'
                       f'Please choose another name.')
